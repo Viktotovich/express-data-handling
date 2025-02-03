@@ -20,7 +20,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
-  res.render("index", { links: links, users: users, github: github });
+  res.render("pages/index", { links: links, users: users, github: github });
 });
 
 app.get("/about", (req, res) => {
