@@ -10,7 +10,12 @@
     <ul>
       <% if (locals.users) {%> <% users.forEach(user => { %>
       <li>
-        ID: <%= user.id%>, Name: <%= user.firstName %> <%= user.lastName %>
+        <p>
+          ID: <%= user.id%>, Name: <%= user.firstName %> <%= user.lastName %>
+        </p>
+        <p>Email: <%= user.email%></p>
+        <p>Age: <%= user.age%></p>
+        <p>Bio: <%= user.bio%></p>
         <a href="/<%= user.id%>/update">Update</a>
         <form
           action="/<%= user.id%>/delete"
@@ -24,6 +29,7 @@
             Delete
           </button>
         </form>
+        <hr />
       </li>
       <% }); %> <% } %>
     </ul>

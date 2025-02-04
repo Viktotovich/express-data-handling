@@ -17,6 +17,8 @@ const validateUser = [
     .withMessage(`Last name ${alphaErr}`)
     .isLength()
     .withMessage(`Last name ${lengthErr}`),
+  body("email").trim().isEmail(),
+  //TODO
 ];
 
 exports.usersListGet = (req, res) => {

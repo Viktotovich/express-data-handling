@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <h1><%= title %></h1>
@@ -13,6 +14,17 @@
       <input type="text" name="firstName" id="firstName" required />
       <label for="lastName">Last Name: </label>
       <input type="text" name="lastName" id="lastName" required />
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+      <label for="age">(Optional) Your age: </label>
+      <input type="number" name="age" id="age" min="18" max="120" />
+      <label for="bio">(Optional) Bio: </label>
+      <textarea
+        name="bio"
+        id="bio"
+        maxlength="200"
+        placeholder="I am a ..."
+      ></textarea>
       <button type="submit">Submit</button>
     </form>
     <a href="/">Back to home</a>
