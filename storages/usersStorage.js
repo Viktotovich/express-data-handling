@@ -4,6 +4,13 @@ class UsersStorage {
     this.id = 0;
   }
 
+  findUser({ firstName, lastName, email }) {
+    if (firstName !== undefined) {
+      const arr = Object.values(this.storage);
+      console.log(arr);
+    }
+  }
+
   addUser({ firstName, lastName, email, age, bio }) {
     const id = this.id;
     this.storage[id] = { id, firstName, lastName, email, age, bio };

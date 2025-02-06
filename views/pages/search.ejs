@@ -3,21 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= title %></title>
+    <title><%= title%></title>
   </head>
   <body>
     <h1><%= title %></h1>
-    <%- include("../partials/search") %>
+    <hr />
     <ul>
-      <% if (locals.users) {%> <% users.forEach(user => { %>
+      <% searchResult.forEach((result) => { %>
       <li>
         <p>
-          ID: <%= user.id%>, Name: <%= user.firstName %> <%= user.lastName %>
+          ID: <%= result.id%>, Name <%= result.firstName%> <%= result.lastName%>
         </p>
-        <p>Email: <%= user.email%></p>
-        <p>Age: <%= user.age%></p>
-        <p>Bio: <%= user.bio%></p>
-        <a href="/<%= user.id%>/update">Update</a>
+        <p>Email: <%= result.email %></p>
+        <p>Age: <%= result.age%></p>
+        <p>Bio: <%= result.bio%></p>
+        <a href="/<%= result.id%>/update">Update Information</a>
         <form
           action="/<%= user.id%>/delete"
           method="POST"
@@ -30,10 +30,8 @@
             Delete
           </button>
         </form>
-        <hr />
       </li>
-      <% }); %> <% } %>
+      <%})%>
     </ul>
-    <a href="/create">Create a user</a>
   </body>
 </html>

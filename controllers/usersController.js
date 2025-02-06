@@ -1,7 +1,7 @@
 const usersStorage = require("../storages/usersStorage");
 const { body, validationResult } = require("express-validator");
 
-const alphaErr = "must only container letters.";
+const alphaErr = "must only contain letters.";
 const lengthErr = "must be between 1 and 10 characters.";
 const emailErr = "must be a valid email";
 const ageErr = "must be a number: it can't be a year, nor a string.";
