@@ -5,9 +5,25 @@ class UsersStorage {
   }
 
   findUser({ firstName, lastName, email }) {
-    if (firstName !== undefined) {
-      const arr = Object.values(this.storage);
-      console.log(arr);
+    const arr = Object.values(this.storage);
+    if (firstName !== undefined && firstName !== "") {
+      const filteredArr = arr.filter((item) => {
+        return item.firstName === firstName;
+      });
+      return filteredArr;
+    } else if (lastName !== undefined && lastName !== "") {
+      const filteredArr = arr.filter((item) => {
+        return item.lastName === lastName;
+      });
+      return filteredArr;
+    } else if (email !== undefined && email !== "") {
+      const filteredArr = arr.filter((item) => {
+        console.dir(item.email, email);
+        return item.email === email;
+      });
+      return filteredArr;
+    } else {
+      return arr;
     }
   }
 
