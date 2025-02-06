@@ -3,6 +3,9 @@ const { body, validationResult } = require("express-validator");
 
 const alphaErr = "must only container letters.";
 const lengthErr = "must be between 1 and 10 characters.";
+const emailErr = "must be a valid email";
+const ageErr = "must be a number: it can't be a year, nor a string.";
+const ageErr2 = "must be between 18 and 120.";
 
 const validateUser = [
   body("firstName")
@@ -15,10 +18,18 @@ const validateUser = [
     .trim()
     .isAlpha()
     .withMessage(`Last name ${alphaErr}`)
-    .isLength()
+    .isLength({ min: 1, max: 10 })
     .withMessage(`Last name ${lengthErr}`),
-  body("email").trim().isEmail(),
-  //TODO
+  body("email").trim().isEmail().withMessage(`Email ${emailErr}`),
+  body("age")
+    .trim()
+    .isNumeric()
+    .withMessage(`Age ${ageErr}`)
+    .isInt({ min: 18, max: 120 })
+    .withMessage(`Age ${ageErr2}`),
+  body("bio")
+    .isLength({ min: 0, max: 200 })
+    .withMessage("You bio must be at most 200 characters"),
 ];
 
 exports.usersListGet = (req, res) => {
@@ -44,8 +55,8 @@ exports.usersCreatePost = [
         errors: errors.array(),
       });
     }
-    const { firstName, lastName } = req.body;
-    usersStorage.addUser({ firstName, lastName });
+    const { firstName, lastName, email, age, bio } = req.body;
+    usersStorage.addUser({ firstName, lastName, email, age, bio });
     res.redirect("/");
   },
 ];
@@ -71,8 +82,14 @@ exports.usersUpdatePost = [
       });
     }
 
-    const { firstName, lastName } = req.body;
-    usersStorage.updateUser(req.params.id, { firstName, lastName });
+    const { firstName, lastName, email, age, bio } = req.body;
+    usersStorage.updateUser(req.params.id, {
+      firstName,
+      lastName,
+      email,
+      age,
+      bio,
+    });
     res.redirect("/");
   },
 ];
